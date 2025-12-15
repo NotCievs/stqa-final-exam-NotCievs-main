@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <h1>Gradebook</h1>
+        <form action="/add" method="POST">
+            <input type="text" name="name" id="name" placeholder="Name">
+            <input type="text" name="subject" id="subject" placeholder="Subject">
+            <input type="text" name="grade" id="grade" placeholder="Grade (0-100)">
+            <button id="add-btn">Add</button>
+        </form>
+        <ul id="student-list">
+        {% for s in students %}
+            <li>{{ s.name }} - {{ s.subject }} - {{ s.grade }}</li>
+        {% endfor %}
+        </ul>
+    </body>
+</html>
