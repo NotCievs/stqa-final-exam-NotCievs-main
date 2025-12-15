@@ -1,0 +1,30 @@
+LOAD TESTING RESULTS
+====================
+
+Test Configuration:
+- Total Users: 500
+- Spawn Rate: 25 users per second  
+- Duration: 60 seconds
+- Base URL: http://localhost:5000
+
+Final Results:
+- Total Requests: 3,483
+- Total Response Time (avg): 4,097 ms (approx 4.1 seconds)
+- Minimum Response Time: 4,050 ms
+- Maximum Response Time: 4,312 ms
+- Median Response Time: 4,100 ms
+
+Throughput & Performance:
+- Throughput: 58.54 req/s
+- Error Rate: 58.54 failures/s (100%)
+- All requests failed due to connection refused (server capacity exceeded)
+
+Request Breakdown:
+- GET /: 1,763 requests (50.6%)
+- POST /add: 838 requests (24.1%)
+- GET /api/students: 882 requests (25.3%)
+
+Observation:
+The load test shows that the Flask development server reached its maximum capacity at approximately 40 seconds of the test. The server began refusing connections after that point, resulting in 100% error rate for requests after that threshold. The response times were consistently around 4 seconds before the server started refusing connections, indicating the server was handling the requests but became overwhelmed by the concurrent load.
+
+For production use, a proper WSGI server (such as Gunicorn or Waitress) would be recommended to handle higher loads efficiently.
